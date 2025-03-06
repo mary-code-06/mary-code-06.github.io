@@ -156,17 +156,32 @@
             font-weight: bold;
         }
 
-        @media (max-width: 768px) {
-            .header span {
-                font-size: 35px;
-            }
+       @media (max-width: 768px) {
+    .header {
+        padding: 15px;
+    }
 
-            .card {
-                width: 90%;
-                height: 150px;
-                font-size: 22px;
-            }
-        }
+    .header img {
+        width: 120px;
+    }
+
+    .header span {
+        font-size: 28px;
+    }
+
+    .container {
+        padding-top: 20px; /* Evita que el header tape el contenido */
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+
+    .card {
+        width: 85%;
+        height: 130px;
+        font-size: 18px;
+    }
+}
+
     </style>
 </head>
 <body>
