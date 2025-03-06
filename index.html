@@ -156,13 +156,10 @@
             font-weight: bold;
         }
 
-       @media (max-width: 768px) {
-    .header {
-        padding: 15px;
-    }
-
+ @media (max-width: 768px) {
     .header img {
         width: 120px;
+        margin-right: 10px; /* Reduce el espacio entre logo y texto */
     }
 
     .header span {
@@ -170,14 +167,18 @@
     }
 
     .container {
-        padding-top: 20px; /* Evita que el header tape el contenido */
+        padding-top: 20px;
         padding-left: 10px;
         padding-right: 10px;
     }
 
+    .container h2 {
+        font-size: 24px; /* Texto más pequeño */
+    }
+
     .card {
-        width: 85%;
-        height: 130px;
+        width: 95%;  /* Más anchas */
+        height: 110px; /* Menos altas */
         font-size: 18px;
     }
 }
