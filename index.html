@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <link rel="icon" href="logo_pecado.svg" type="image/x-icon">
+    <link rel="icon" href="logo_pecado.svg" type="image/x-icon">
     <title>Pecado El Gourmet</title>
     <style>
         * {
@@ -14,7 +15,7 @@
         }
 
         body {
-            background: linear-gradient(135deg, #1a1a1a, #ff4500);
+            background: linear-gradient(135deg, #111, #ff4500);
             color: white;
             text-align: center;
             display: flex;
@@ -24,6 +25,7 @@
             position: relative;
         }
 
+        /* Lluvia de iconos */
         .icons-container {
             position: absolute;
             width: 100%;
@@ -31,13 +33,15 @@
             top: 0;
             left: 0;
             overflow: hidden;
+            pointer-events: none;
         }
 
         .falling-icon {
             position: absolute;
-            opacity: 0.9;
-            cursor: pointer;
+            color: white;
+            opacity: 0.8;
             user-select: none;
+            filter: drop-shadow(0px 0px 5px rgba(255, 255, 255, 0.8));
             animation: fall linear infinite;
         }
 
@@ -46,92 +50,128 @@
                 transform: translateY(-10vh);
                 opacity: 1;
             }
+
             to {
                 transform: translateY(100vh);
                 opacity: 0;
             }
         }
 
-        @keyframes explode {
-            0% { transform: scale(1); opacity: 1; }
-            50% { transform: scale(1.5); opacity: 0.8; }
-            100% { transform: scale(2); opacity: 0; }
-        }
-
-        .header {
-            background: rgba(0, 0, 0, 0.9);
+        /* Header y Footer */
+        .header,
+        .footer {
+            background: rgba(0, 0, 0, 0.95);
             color: white;
-            padding: 30px;
+            padding: 25px;
             display: flex;
             align-items: center;
             justify-content: center;
             box-shadow: 0px 5px 20px rgba(255, 69, 0, 0.8);
-            position: sticky;
-            top: 0;
+            position: relative;
             z-index: 10;
         }
 
+        /* Logo con efecto de brillo blanco */
         .header img {
-            width: 200px;
+            width: 180px;
             height: auto;
-            margin-right: 25px;
+            margin-right: 20px;
             filter: drop-shadow(0px 0px 20px rgba(255, 69, 0, 1));
+            transition: filter 0.3s ease-in-out;
         }
 
+        .header img:hover {
+            filter: drop-shadow(0px 0px 25px white);
+        }
+
+        /* Texto del header con brillo más oscuro al pasar el mouse */
         .header span {
-            font-size: 45px;
+            font-size: 42px;
             font-weight: bold;
             color: #FF4500;
             text-shadow: 4px 4px 15px rgba(255, 69, 0, 1);
+            transition: text-shadow 0.3s ease-in-out;
         }
 
+        .header span:hover {
+            text-shadow: 0px 0px 30px rgba(255, 69, 0, 1),
+                0px 0px 50px rgba(255, 69, 0, 1),
+                0px 0px 70px rgba(255, 69, 0, 1);
+        }
 
+        /* Contenido principal */
         .container {
             flex-grow: 1;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            padding: 30px;
+            padding: 40px;
         }
 
         .card-container {
             display: flex;
-            gap: 20px;
+            gap: 25px;
             flex-wrap: wrap;
             justify-content: center;
+            margin-top: -50px;
         }
 
+        /* Tarjetas */
         .card {
-            width: 300px;
-            height: 180px;
+            width: 320px;
+            height: 200px;
             background: linear-gradient(135deg, black, #FF4500);
             color: white;
             border-radius: 20px;
             text-align: center;
-            font-size: 24px;
+            font-size: 26px;
             font-weight: bold;
             display: flex;
             flex-direction: column;
             justify-content: center;
             cursor: pointer;
-            transition: transform 0.3s ease-in-out;
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+            box-shadow: 0px 5px 15px rgba(255, 69, 0, 0.7);
         }
 
         .card:hover {
             transform: scale(1.1);
+            box-shadow: 0px 10px 25px rgba(255, 69, 0, 1);
         }
 
+        /* Footer */
         .footer {
-            background: black;
-            color: white;
-            padding: 16px;
-            width: 100%;
-            text-align: center;
-            box-shadow: 0px -3px 12px rgba(255, 69, 0, 0.8);
+            margin-top: auto;
         }
 
-         @media (max-width: 768px) {
+        /* Efecto brillante para el enlace */
+        .footer a {
+            color: #FF4500;
+            text-decoration: none;
+            font-weight: bold;
+            transition: text-shadow 0.3s ease-in-out;
+            margin-left: 5px;
+        }
+
+        .footer a:hover {
+            text-shadow: 0px 0px 10px #FF4500, 0px 0px 20px #FF6347;
+        }
+
+        .identificate {
+            margin-bottom: 100px;
+            font-size: 28px;
+            font-weight: bold;
+            text-shadow: 0px 0px 15px rgba(255, 255, 255, 0.8);
+        }
+
+        /* Responsividad */
+        @media (max-width: 768px) {
+            .identificate {
+                margin-top: 50px;
+                margin-bottom: 120px;
+            }
+
             .header img {
                 width: 120px;
             }
@@ -141,25 +181,61 @@
             }
 
             .container h2 {
+                font-size: 22px;
+            }
+
+            .card {
+                width: 90%;
+                height: 130px;
+                font-size: 20px;
+            }
+
+            .footer {
+                display: flex;
+                justify-content: center;
+                flex-wrap: wrap;
+                gap: 5px;
+                text-align: center;
+            }
+
+            .card-container {
+                margin-top: -70px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .header {
+                flex-direction: row;
+                justify-content: center;
+                align-items: center;
+                text-align: center;
+            }
+
+            .header img {
+                width: 100px;
+                margin-right: 10px;
+            }
+
+            .header span {
                 font-size: 24px;
+                margin-top: 0;
             }
 
             .card {
                 width: 95%;
-                height: 110px;
+                height: 120px;
                 font-size: 18px;
             }
 
-            /* Reducir la cantidad de íconos en pantallas pequeñas */
-            .icons-container {
-                display: none;
+            .footer {
+                font-size: 12px;
             }
-         
         }
     </style>
 </head>
+
 <body>
-    <div class="icons-container"></div> 
+    <div class="icons-container"></div>
 
     <div class="header">
         <img src="logo_pecado.svg" alt="Logo">
@@ -167,7 +243,8 @@
     </div>
 
     <div class="container">
-        <h2>¡Identifícate para comenzar!</h2>
+        <h2 class="identificate">¡Identifícate para comenzar!</h2>
+
         <div class="card-container">
             <div class="card">Administrador</div>
             <div class="card">Mesero</div>
@@ -176,18 +253,13 @@
     </div>
 
     <div class="footer">
-        Versión 1.0 Copyright © 2025-2027 Grupo Matrix. All rights reserved.
+        Versión 1.0 © 2025-2027 <a href="#"> Grupo Matrix</a> Todos los derechos reservados.
     </div>
-
-    <audio id="popSound">
-        <source src="https://www.fesliyanstudios.com/play-mp3/4382" type="audio/mpeg">
-    </audio>
 
     <script>
         document.addEventListener("DOMContentLoaded", function () {
             let iconsContainer = document.querySelector(".icons-container");
             let icons = ["🍔", "🍟", "🥤", "🌭", "🍕"];
-            let sound = document.getElementById("popSound");
 
             let totalIcons = window.innerWidth < 768 ? 10 : 30;
 
@@ -200,24 +272,10 @@
                 icon.style.animationDuration = (Math.random() * 4 + 6) + "s";
                 icon.style.animationDelay = Math.random() * 3 + "s";
 
-                // Permite hacer clic
-                icon.style.pointerEvents = "auto";
-                icon.style.cursor = "pointer";
-
-                // Efecto de explosión al hacer clic
-                icon.addEventListener("click", function (event) {
-                    icon.style.position = "absolute"; // Fijar posición
-                    icon.style.left = event.clientX + "px"; 
-                    icon.style.top = event.clientY + "px"; 
-                    icon.style.animation = "explode 0.3s forwards";
-                    sound.currentTime = 0;
-                    sound.play();
-                    setTimeout(() => icon.remove(), 300);
-                });
-
                 iconsContainer.appendChild(icon);
             }
         });
     </script>
 </body>
+
 </html>
