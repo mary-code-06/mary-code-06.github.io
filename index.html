@@ -156,29 +156,28 @@
             font-weight: bold;
         }
 
- @media (max-width: 768px) {
+@media (max-width: 768px) {
+    .header {
+        padding: 15px; /* Menos alto */
+        position: relative; /* Evita que se desplace */
+    }
+
     .header img {
         width: 120px;
-        margin-right: 10px; /* Reduce el espacio entre logo y texto */
+        margin-right: 10px;
     }
 
     .header span {
         font-size: 28px;
     }
 
-    .container {
-        padding-top: 20px;
-        padding-left: 10px;
-        padding-right: 10px;
-    }
-
     .container h2 {
-        font-size: 24px; /* Texto más pequeño */
+        font-size: 24px;
     }
 
     .card {
-        width: 95%;  /* Más anchas */
-        height: 110px; /* Menos altas */
+        width: 95%;
+        height: 90px; /* Menos altura */
         font-size: 18px;
     }
 }
